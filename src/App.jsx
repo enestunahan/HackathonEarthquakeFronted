@@ -5,6 +5,7 @@ import InformationMessage from './Components/InformationMessage/InformationMessa
 import Navbar from './Components/Navbar/Navbar'
 import earthquakeBag from  './assets/images/depremcantasi.jpg'
 import meetingPlace from './assets/images/toplanmayeri.jpg'
+import Footer from './Components/Footer/Footer'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Hero/>
         <InformationMessage image={earthquakeBag} title = {earthquakeBagTitle} message = {earthquakeBagMessage} className = "informationMessageContentearthquakeBag"/>
         <InformationMessage image={meetingPlace} title = {meetingPlaceTitle} message = {meetingPlaceMessage} className = "informationMessageContentmeetingPlace"/>
+        <Footer/>
     </>
   )
 }

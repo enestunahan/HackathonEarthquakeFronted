@@ -1,0 +1,9 @@
+.footer{
+    background-color: rgb(157, 150, 150);
+    border-top: 1px solid aliceblue;
+    padding: 30px;
+}
+
+.footerBody{
+    text-align: end;
+}
