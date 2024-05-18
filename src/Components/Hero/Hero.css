@@ -1,0 +1,39 @@
+.hero{
+     /* min-height: 100vh; */
+    height: 100vh; 
+    width: 100%;
+    background:  url('../../assets/images/hero.webp');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heroText{
+    text-align: center;
+    max-width: 800px;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.heroText h1{
+    color: aliceblue;
+}
+
+.heroText p{
+    color: aliceblue;
+    line-height: 1.4;
+    color: aliceblue;
+    font-size: 26px;
+}
+
+.heroText button{
+    box-shadow: rgba(247, 224, 224, 0.35) 0px 5px 15px;
+    width: 30%;
+}
+
