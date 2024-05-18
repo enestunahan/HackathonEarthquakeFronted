@@ -4,6 +4,13 @@
     justify-content: center;
     padding: 20px 50px;
     position: fixed;
+    z-index: 999;
+    background-color: transparent;
+    transition: 0.5s ease-in-out;
+}
+
+.darkNav{
+    background-color: rgb(27, 26, 26);
 }
 
 .navbar .links ul{
