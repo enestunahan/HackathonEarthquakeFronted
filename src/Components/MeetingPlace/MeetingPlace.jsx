@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './MeetingPlace.css'
 import Select from 'react-select'
+import MeetingPlaceFilterResult from '../MeetingPlaceFilterResult/MeetingPlaceFilterResult';
 
 export default function MeetingPlace() {
   
@@ -15,12 +16,14 @@ export default function MeetingPlace() {
 
   const meetingPlaces = [
     {id:1 , districtId:1 , neighbourhoodId:1 , title: 'Eyüp Toplanma Alanı 1'},
-    {id:2 , districtId:1 , neighbourhoodId:2 , title: 'Eyüp Toplanma Alanı 2'}
+    {id:2 , districtId:1 , neighbourhoodId:2 , title: 'Eyüp Toplanma Alanı 2'},
+    {id:3 , districtId:1 , neighbourhoodId:1 , title: 'Eyüp Toplanma Alanı 3'},
   ]
 
   const [mahalleler , setMahalleler] = useState([]);
   const [selectedDistrict , setSelectedDistrict] = useState(null);
   const [selectedNeighbourhoods , setSelectedNeighbourhoods] = useState(null);
+  const [data , setData] = useState([]);
 
 
   useEffect(() => {
@@ -37,7 +40,8 @@ export default function MeetingPlace() {
       debugger;
       let districtId = selectedDistrict.value;
       let neighbourhoodId = selectedNeighbourhoods.value;
-      let data = meetingPlaces.filter(x=> x.districtId === districtId && x.neighbourhoodId ===neighbourhoodId );
+      let result = meetingPlaces.filter(x=> x.districtId === districtId && x.neighbourhoodId ===neighbourhoodId );
+      setData(result);
   }
  
   return (
@@ -61,9 +65,18 @@ export default function MeetingPlace() {
 
           <button className='filterButton' onClick={handleClick}> Ara </button>
       </div>
+      
 
-      
-      
+      <div className='filterResult'>
+          {data.length > 0 ? (
+            data.map((item, index) => (
+              <MeetingPlaceFilterResult key={index} value={item} />
+            ))
+          ) : (
+            'Bu kriterlerde toplanma alanı bulunamamıştır'
+          )}
+      </div>
+
      
     </div>
   )
