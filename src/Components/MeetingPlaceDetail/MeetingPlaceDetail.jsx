@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import assemblyArea from '../../assets/images/toplanmaAlani.jpg'
 import './MeetingPlaceDetail.css'
+import 'aos/dist/aos.css'; 
+import AOS from 'aos';
 
 export default function MeetingPlaceDetail() {
  
   debugger;
   const {placeId} = useParams();
+  const navigate = useNavigate();
 
   const[data , setData] = useState('');
 
@@ -19,10 +22,13 @@ export default function MeetingPlaceDetail() {
   useEffect(()=> {
     let result = meetingPlaces.find(x=> x.id === parseInt(placeId));
     setData(result);
+
+    AOS.init({duration: 1000});
+
   },[])
  
   return (
-    <div className='meetingPlaceDetail'>
+    <div data-aos="fade-down" className='meetingPlaceDetail'>
 
       <div className='meetingPlaceDetailImg'>
             <img src={assemblyArea} alt="" />
@@ -34,6 +40,10 @@ export default function MeetingPlaceDetail() {
         <p>Mahalle : {data.neighbourhood} </p>
         <p>Açık Adres : {data.openAddress} </p>
         <p>Çadır Doluluk Oranı : {data.tentOccupancyRate} % </p>
+      </div>
+
+      <div>
+        <button onClick={() => navigate(-1)}> Filtreleme Sayfasına Dön </button>
       </div>
 
     </div>

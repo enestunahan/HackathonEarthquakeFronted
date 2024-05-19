@@ -1,9 +1,9 @@
 .meetingPlaceDetail{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: 90vh;
-    width: 70%;
+    width: 90%;
 }
 
 .meetingPlaceDetailImg{

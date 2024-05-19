@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './Navbar.css'
 import { Link, useLocation } from 'react-router-dom';
+import 'aos/dist/aos.css'; 
+import AOS from 'aos';
 
 export default function Navbar() {
   
@@ -12,10 +14,15 @@ export default function Navbar() {
       window.addEventListener("scroll", ()=> {
         window.scrollY > 50 ? setSticky(true) : setSticky(false);
       })
+
+      AOS.init({
+        duration: 1000
+      });
+
   },[])
   
   return (
-    <div className= {`navbar ${sticky == true || isHome == false ? 'darkNav' : ''}`}>
+    <div data-aos="fade-down" className= {`navbar ${sticky == true || isHome == false ? 'darkNav' : ''}`}>
         <div className='links'>
             <ul>
                 <li> <Link to='' className='link'> Ana Sayfa </Link>      </li>
