@@ -8,6 +8,7 @@ function Admin() {
 
     const[selectedPlace , setSelectedPlace] = useState(null);
     const[isModalOpen, setIsModalOpen] = useState(false);
+    const[processName , setProcessName] = useState('');
 
     const meetingPlaces = [
         {id:1, title: 'Eyüp Toplanma Alanı 1' , totalTent : 10 , fullTent : 5 },
@@ -17,17 +18,32 @@ function Admin() {
 
   const handleEdit = (place) => {
     setSelectedPlace(place);
+    setProcessName("Güncelle");
     setIsModalOpen(true);
   }
 
-  const handleSave = (updatedData) => {
+  const handleAdd = () => {
+    setIsModalOpen(true);
+    setProcessName("Ekle");
+    setSelectedPlace(null);
+  }
+
+  const handleSave = (data) => {
     debugger;
-    // setUsers(users.map(user => (user.id === updatedUser.id ? updatedUser : user)));
+
+    if(data.id ===0){
+        // ekleme
+    }
+    if(data.id !==0){
+        // güncelleme işlemi
+    }
+    
   };
 
   return (
     <div className="admin-container">
       <h1>Admin Dashboard</h1>
+      <button onClick={handleAdd}> Toplanma Alanı Ekle </button>
       <table className="admin-table">
         <thead>
           <tr>
@@ -56,6 +72,7 @@ function Admin() {
         isOpen={isModalOpen}
         onClose={()=> setIsModalOpen(false)}
         onSave={handleSave}
+        processName = {processName}
      />
 
     </div>

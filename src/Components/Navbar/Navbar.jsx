@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Navbar.css'
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
   
@@ -18,9 +18,9 @@ export default function Navbar() {
     <div className= {`navbar ${sticky == true || isHome == false ? 'darkNav' : ''}`}>
         <div className='links'>
             <ul>
-                <li>Ana Sayfa</li>
+                <li> <Link to='' className='link'> Ana Sayfa </Link>      </li>
                 <li>Hakkımızda</li>
-                <li>Projelerimiz</li>
+                <li>  <Link to='/meetingPlace' className='link'> Toplanma Alanı </Link> </li>
                 <li>Tecrübeler</li>
             </ul>
         </div>

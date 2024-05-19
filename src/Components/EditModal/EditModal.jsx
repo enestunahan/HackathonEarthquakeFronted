@@ -2,28 +2,25 @@ import React, { useState } from 'react';
 import './EditModal.css'
 
 
-export default function EditModal({data , isOpen , onClose,  onSave}) {
+export default function EditModal({data , isOpen , onClose,  onSave , processName}) {
   
-    debugger;
 
     if (!isOpen) return null;
 
-
-    const [totalTent, setTotalTent] = useState(data.totalTent);
-    const [fullTent,  setFullTent]  = useState(data.fullTent);
-    const [title , setTitle] = useState(data.title);
-    
+    const [totalTent, setTotalTent] = useState(data ? data.totalTent : 0 );
+    const [fullTent,  setFullTent]  = useState(data ? data.fullTent : 0);
+    const [title , setTitle] = useState(data ? data.title : '');
+    const [id , setId] = useState(data ? data.id : 0);
   
     const handleSave = () => {
-        debugger;
-      onSave({ ...data, totalTent, fullTent , title });
+      onSave({ ...data, totalTent, fullTent , title , id });
       onClose();
     };
   
     return (
         <div className="modal-overlay">
         <div className="modal-content">
-          <h2>Güncelle</h2>
+          <h2> {processName} </h2>
           <form>
           <div>
               <label>Başlık:</label>
