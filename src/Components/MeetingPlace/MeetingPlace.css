@@ -1,5 +1,19 @@
 .meetingPlace{
     margin-top: 10%;
     height: 90vh;
+}
+
+.filters {
+    padding: 50px;
     border: 1px solid red;
+    display: flex;
+    justify-content: space-around;
+}
+
+.filter{
+    width: 30%;
+}
+
+.filterButton{
+    width: 10%;
 }
