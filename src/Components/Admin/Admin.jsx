@@ -1,7 +1,8 @@
 // src/Admin.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Admin.css';
 import EditModal from '../EditModal/EditModal';
+import axios, { Axios } from 'axios';
 
 function Admin() {
   
@@ -10,11 +11,18 @@ function Admin() {
     const[isModalOpen, setIsModalOpen] = useState(false);
     const[processName , setProcessName] = useState('');
 
-    const meetingPlaces = [
-        {id:1, title: 'Eyüp Toplanma Alanı 1' , totalTent : 10 , fullTent : 5 },
-        {id:2, title: 'Eyüp Toplanma Alanı 1' , totalTent : 20 , fullTent : 10 },
-        {id:3, title: 'Eyüp Toplanma Alanı 1' , totalTent : 30 , fullTent : 9 },
-      ]
+
+    const[meetingPlaces , setMeetingPlaces] = useState([]);
+
+    const getDatas = async()=> {
+        let result = await axios.get("https://localhost:7159/api/MeetingPlace");
+        setMeetingPlaces(result.data.data);
+    }
+
+    useEffect(()=> {
+      getDatas();
+    },[])
+
 
   const handleEdit = (place) => {
     setSelectedPlace(place);
@@ -28,16 +36,40 @@ function Admin() {
     setSelectedPlace(null);
   }
 
-  const handleSave = (data) => {
-    debugger;
+  const handleSave = async (data) => {
+
+   
 
     if(data.id ===0){
-        // ekleme
+
+        let dto ={
+          name : data.title,
+          totalNumberOfBed: data.totalTent,
+          numberOfBedUsed: data.fullTent,
+          cityId:1,
+          districtId: data.districtId,
+          neighbourhoodId: data.neighbourhoodId,
+          openAddress : data.openAddress
+        }
+   
+        let result = await axios.post("https://localhost:7159/api/MeetingPlace",dto);
+
     }
+
     if(data.id !==0){
-        // güncelleme işlemi
+
+      let dto = {
+        id : data.id,
+        name : data.title,
+        totalNumberOfBed: parseInt(data.totalTent),
+        numberOfBedUsed: parseInt(data.fullTent),
+  
+      }
+
+      let result = await axios.put("https://localhost:7159/api/MeetingPlace/update",dto);
+     
     }
-    
+    getDatas();
   };
 
   return (
@@ -58,9 +90,9 @@ function Admin() {
           {meetingPlaces.map(place => (
             <tr key={place.id}>
               <td>{place.id}</td>
-              <td>{place.title}</td>
-              <td> {place.fullTent}</td>
-              <td> {place.totalTent}</td>
+              <td>{place.name}</td>
+              <td> {place.totalNumberOfBed}</td>
+              <td> {place.numberOfBedUsed}</td>
               <td> <button onClick={()=> handleEdit(place)}>Düzenle</button> </td>
             </tr>
           ))}

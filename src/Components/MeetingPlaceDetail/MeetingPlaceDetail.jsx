@@ -4,6 +4,7 @@ import assemblyArea from '../../assets/images/toplanmaAlani.jpg'
 import './MeetingPlaceDetail.css'
 import 'aos/dist/aos.css'; 
 import AOS from 'aos';
+import axios, { Axios } from 'axios';
 
 export default function MeetingPlaceDetail() {
  
@@ -13,15 +14,17 @@ export default function MeetingPlaceDetail() {
 
   const[data , setData] = useState('');
 
-  const meetingPlaces = [
-    {id:1 , district: 'Eyüp' , neighbourhood:'Çırçır' , openAddress:'Çırçır mah. deneme sok. Eyüp/İstanbul' , title: 'Eyüp Toplanma Alanı 1' , tentOccupancyRate : 10},
-    {id:2 , district: 'Eyüp' , neighbourhood:'Çırçır' , openAddress:'Çırçır mah. deneme sok. Eyüp/İstanbul' , title: 'Eyüp Toplanma Alanı 1' , tentOccupancyRate : 20},
-    {id:3 , district: 'Eyüp' , neighbourhood:'Çırçır' , openAddress:'Çırçır mah. deneme sok. Eyüp/İstanbul' , title: 'Eyüp Toplanma Alanı 1' , tentOccupancyRate : 30},
-  ]
+  const getData = async()=>{
+
+    debugger;
+
+    let result = await axios.get(`https://localhost:7159/api/MeetingPlace/${placeId}`);
+    setData(result.data.data);
+  }
 
   useEffect(()=> {
-    let result = meetingPlaces.find(x=> x.id === parseInt(placeId));
-    setData(result);
+
+    getData();
 
     AOS.init({duration: 1000});
 
@@ -35,11 +38,11 @@ export default function MeetingPlaceDetail() {
       </div>
 
       <div className='info'>
-        <h1> {data.title} </h1>
-        <p>İlçe : {data.district}</p>
-        <p>Mahalle : {data.neighbourhood} </p>
+        <h1> {data.name} </h1>
+        <p>İlçe : {data.districtName}</p>
+        <p>Mahalle : {data.neighbourhoodName} </p>
         <p>Açık Adres : {data.openAddress} </p>
-        <p>Çadır Doluluk Oranı : {data.tentOccupancyRate} % </p>
+        <p>Çadır Doluluk Oranı : {data.solidityRatio} % </p>
       </div>
 
       <div>

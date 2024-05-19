@@ -7,13 +7,19 @@ export default function EditModal({data , isOpen , onClose,  onSave , processNam
 
     if (!isOpen) return null;
 
-    const [totalTent, setTotalTent] = useState(data ? data.totalTent : 0 );
-    const [fullTent,  setFullTent]  = useState(data ? data.fullTent : 0);
-    const [title , setTitle] = useState(data ? data.title : '');
+    const [totalTent, setTotalTent] = useState(data ? data.totalNumberOfBed : 0 );
+    const [fullTent,  setFullTent]  = useState(data ? data.numberOfBedUsed : 0);
+    const [title , setTitle] = useState(data ? data.name : '');
     const [id , setId] = useState(data ? data.id : 0);
+
+
+    const[districtId , setDistrictId] = useState(0);
+    const[neighbourhoodId, setNeighbourhoodId] = useState(0);
+    const[openAddress, setOpenAddress] = useState("");
+
   
     const handleSave = () => {
-      onSave({ ...data, totalTent, fullTent , title , id });
+      onSave({ ...data, totalTent, fullTent , title , id , districtId , neighbourhoodId, openAddress });
       onClose();
     };
   
@@ -46,7 +52,39 @@ export default function EditModal({data , isOpen , onClose,  onSave , processNam
                 value={fullTent}
                 onChange={(e) => setFullTent(e.target.value)}
               />
-            </div>         
+            </div>   
+
+            {processName === "Ekle" ? (
+              <>
+                  <div>
+          <label>İlçe İd</label>
+          <input
+            type="input"
+            value={districtId}
+            onChange={(e) => setDistrictId(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Mahalle İd</label>
+          <input
+            type="input"
+            value={neighbourhoodId}
+            onChange={(e) => setNeighbourhoodId(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Açık Adres</label>
+          <input
+            type="text"
+            value={openAddress}
+            onChange={(e) => setOpenAddress(e.target.value)}
+          />
+        </div>
+              </>
+    
+        
+      ) : null}
+
             <button type="button" onClick={handleSave}>Kaydet</button>
             <button type="button" onClick={onClose}>İptal</button>
           </form>

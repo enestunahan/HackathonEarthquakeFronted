@@ -15,7 +15,7 @@ export default function MeetingPlaceFilterResult(prop) {
 
     return (
     <div data-aos="fade-down" className='meetingPlaceFilterResult'>
-        <h1> {prop.value.title} </h1>
+        <h1> {prop.value.name} </h1>
         <img src={assemblyArea} alt="" />
         <button onClick={() => navigate(`/meetingPlaceDetail/${prop.value.id}`)}>Bilgi Al</button>
     </div>
