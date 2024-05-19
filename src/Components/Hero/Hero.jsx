@@ -6,8 +6,7 @@ export default function Hero() {
     <div className='hero'>
         <div className='heroText'>
           <h1>Böyle Olmasın</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Quisquam quod aut doloribus laboriosam similique ipsam dolores commodi eaque debitis quos.</p>
+          <p>Hayatın oyunudur bazen depremler, bunu unutmamak amacıyla bilinçli ve dayanıklı olmalıyız. Yıkım ve can kaybı olmadan atlatmalıyız. Deprem öldürmez bilinçsizlik öldürür..</p>
           <button>Daha Fazla Bilgi Al</button>
         </div>
     </div>
